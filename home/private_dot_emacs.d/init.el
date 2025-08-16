@@ -4,6 +4,8 @@
 
 (electric-pair-mode 1)
 (setq make-backup-files nil)
+(setq auto-save-default nil)
+(setq create-lockfiles nil)
 
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
@@ -32,13 +34,13 @@
 (defvar my/default-opacity '(80 . 80))
 
 (defun toggle-opacity ()
-  "在完全不透明和 `my/default-opacity` 之间切换当前 frame 的透明度。"
+  "toggle opacity, check default value from my/default-opacity"
   (interactive)
   (if (= (car (frame-parameter nil 'alpha)) 100)
       (set-frame-parameter nil 'alpha my/default-opacity)
     (set-frame-parameter nil 'alpha '(100 . 100))))
 
-;; 绑定快捷键，例如 C-c o
+;; toggle opacity
 (global-set-key (kbd "C-c o") 'toggle-opacity)
 
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
