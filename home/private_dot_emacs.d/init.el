@@ -27,8 +27,6 @@
                     :box nil              
                     :background (face-background 'default)))
 
-(global-set-key (kbd "C-c i") (lambda () (interactive) (find-file "~/.emacs.d/init.el")))
-
 ;; =====================================================================================
 ;; default opacity
 (defvar my/default-opacity '(80 . 80))
@@ -45,7 +43,3 @@
 
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
 (load custom-file)
-
-
-
-
