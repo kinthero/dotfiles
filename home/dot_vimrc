@@ -1,0 +1,88 @@
+" Options viewable by using :options
+" Set options viewable by using :set all
+" Or help for individual configs can be accessed :help <name>
+set nocompatible
+
+" line number
+set number
+set relativenumber
+set scrolloff=5
+
+" search
+set ignorecase
+set smartcase
+set hlsearch
+set incsearch
+
+" Turn backup off, since most stuff is in SVN, git etc. anyway...
+set nobackup
+set nowritebackup
+set noswapfile
+
+" Tab
+set expandtab
+set smarttab
+set shiftwidth=4
+set tabstop=4
+
+" indent
+set autoindent "Auto indent
+set smartindent "Smart indent
+set wrap "Wrap lines
+
+" for theme
+set background=dark
+
+" =================================================================
+let mapleader = " "
+imap jk <esc>
+map 0 ^
+
+" Window
+map <C-j> <C-W>j
+map <C-k> <C-W>k
+map <C-h> <C-W>h
+map <C-l> <C-W>l
+
+" Buffer
+map <leader>bd :Bclose<cr>:tabclose<cr>gT
+map <leader>ba :bufdo bd<cr>
+map <leader>bl :bnext<cr>
+map <leader>bh :bprevious<cr>
+
+" Tabs
+nmap L :tabprevious<cr>
+nmap H :tabnext<cr>
+map <leader>tn :tabnew<cr>
+map <leader>to :tabonly<cr>
+map <leader>tc :tabclose<cr>
+map <leader>tm :tabmove
+map <leader>t<leader> :tabnext<cr>
+
+" Let 'tl' toggle between this and the last accessed tab
+let g:lasttab = 1
+nmap <leader>tl :exe "tabn ".g:lasttab<CR>
+au TabLeave * let g:lasttab = tabpagenr()
+
+" ==============================================================
+" Plugin
+call plug#begin()
+
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+Plug 'justinmk/vim-sneak'
+Plug 'dense-analysis/ale'
+
+call plug#end()
+
+" ==============================================================
+" :W sudo saves the file
+" (useful for handling the permission-denied error)
+command! W execute 'w !sudo tee % > /dev/null' <bar> edit!
+
+" Return to last edit position when opening files (You want this!)
+au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+
+" Set to auto read when a file is changed from the outside
+set autoread
+au FocusGained,BufEnter * silent! checktime
