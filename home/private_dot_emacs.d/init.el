@@ -34,9 +34,12 @@
 (defun toggle-opacity ()
   "toggle opacity, check default value from my/default-opacity"
   (interactive)
-  (if (= (car (frame-parameter nil 'alpha)) 100)
-      (set-frame-parameter nil 'alpha my/default-opacity)
-    (set-frame-parameter nil 'alpha '(100 . 100))))
+  (let ((alpha (frame-parameter nil 'alpha)))
+    (if (or (null alpha)
+	    (and (consp alpha) (= (car alpha) 100))
+	    (and (numberp alpha) (= alpha 100)))
+	  (set-frame-parameter nil 'alpha my/default-opacity)
+      (set-frame-parameter nil 'alpha '(100 . 100)))))
 
 ;; toggle opacity
 (global-set-key (kbd "C-c o") 'toggle-opacity)
