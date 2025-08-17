@@ -35,5 +35,5 @@
         (undecorated . t)
 	(drag-internal-border . 1)
 	(drag-with-tab-line . t)
-	(alpha . (80 . 80))
+	;; (alpha . (80 . 80))
 	)))
