@@ -27,6 +27,17 @@
                     :box nil              
                     :background (face-background 'default)))
 
+;; code complete
+(use-package corfu
+  :custom
+  (corfu-auto t)
+  :init
+  (global-corfu-mode))
+
+;; =====================================================================================
+;; org config
+(setq org-agenda-files '("~/doc/org/notes/"))
+
 ;; =====================================================================================
 ;; default opacity
 (defvar my/default-opacity '(80 . 80))
