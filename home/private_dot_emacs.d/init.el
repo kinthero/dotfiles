@@ -6,6 +6,7 @@
 (setq make-backup-files nil)
 (setq auto-save-default nil)
 (setq create-lockfiles nil)
+(repeat-mode t)
 
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
@@ -26,13 +27,56 @@
                     :underline "gray50"   
                     :box nil              
                     :background (face-background 'default)))
-
+;; =====================================================================================
 ;; code complete
 (use-package corfu
+  :init
+  (global-corfu-mode)
   :custom
   (corfu-auto t)
+  (corfu-auto-delay 0)
+  (corfu-auto-prefix 2)
+  (corfu-quit-no-match 'separator)
+  (corfu-preview-current nil)
+  (corfu-cycle t)
+  (corfu-scroll-margin 4))
+
+(use-package orderless
+  :custom
+  (completion-styles '(orderless basic))
+  (completion-category-defaults nil)
+  (completion-category-overrides
+   '((file (styles basic partial-completion)))))
+
+(use-package cape
   :init
-  (global-corfu-mode))
+  (add-to-list 'completion-at-point-functions #'cape-dabbrev)
+  (add-to-list 'completion-at-point-functions #'cape-file))
+
+(use-package vertico
+  :init
+  (vertico-mode))
+
+(use-package marginalia
+  :after vertico
+  :init
+  (marginalia-mode))
+
+;; (use-package consult)
+;; =====================================================================================
+;; chinese input method
+(require 'pyim)
+(require 'pyim-basedict)
+(pyim-basedict-enable)
+(setq pyim-page-length 9)
+(setq default-input-method "pyim")
+(setq pyim-default-scheme 'pyim-shuangpin)
+(require 'posframe)
+(require 'popon)
+(setq pyim-page-tooltip
+      (if (display-graphic-p)
+	  'posframe
+	'popon))
 
 ;; =====================================================================================
 ;; org config
