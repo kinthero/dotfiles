@@ -1,3 +1,6 @@
+;; my emacs config
+
+;;; basic config
 (setq inhibit-startup-screen t)
 (setq initial-scratch-message "")
 (setq confirm-kill-emacs 'y-or-n-p)
@@ -7,10 +10,13 @@
 (setq auto-save-default nil)
 (setq create-lockfiles nil)
 (repeat-mode t)
+(delete-selection-mode 1)
 
+;;; package initialization
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
 
+;;; load theme
 (use-package catppuccin-theme
   :ensure t
   :config
@@ -19,16 +25,16 @@
   (catppuccin-reload)
   (set-face-attribute 'mode-line nil
                     :overline "gray50"    
-                    :underline "gray50"   
+                    ;; :underline "gray50"   
                     :box nil              
                     :background (face-background 'default))
   (set-face-attribute 'mode-line-inactive nil
                     :overline "gray50"    
-                    :underline "gray50"   
+                    ;; :underline "gray50"   
                     :box nil              
                     :background (face-background 'default)))
-;; =====================================================================================
-;; code complete
+
+;;; code completion
 (use-package corfu
   :init
   (global-corfu-mode)
@@ -63,8 +69,8 @@
   (marginalia-mode))
 
 ;; (use-package consult)
-;; =====================================================================================
-;; chinese input method
+
+;;; chinese input method
 (require 'pyim)
 (require 'pyim-basedict)
 (pyim-basedict-enable)
@@ -77,6 +83,20 @@
       (if (display-graphic-p)
 	  'posframe
 	'popon))
+
+;;; quick select
+
+(use-package expand-region
+  :ensure t
+  :bind
+  ("C-=" . er/expand-region))
+
+;;; quick jump
+(use-package avy
+  :ensure t
+  :bind (("C-:" . avy-goto-char)
+         ("C-'" . avy-goto-line)
+         ("C-c C-j" . avy-resume)))
 
 ;; =====================================================================================
 ;; org config
@@ -99,5 +119,6 @@
 ;; toggle opacity
 (global-set-key (kbd "C-c o") 'toggle-opacity)
 
+;;; custom config
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
 (load custom-file)
