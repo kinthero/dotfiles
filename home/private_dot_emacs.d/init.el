@@ -1,4 +1,4 @@
-;; my emacs config
+;; my emacs config  -*- lexical-binding: t; -*-
 
 ;;; basic config
 (setq inhibit-startup-screen t)
