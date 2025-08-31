@@ -24,15 +24,15 @@
   (setq catppuccin-flavor 'frappe)
   (catppuccin-reload)
   (set-face-attribute 'mode-line nil
-                    :overline "gray50"    
-                    ;; :underline "gray50"   
-                    :box nil              
-                    :background (face-background 'default))
+                      :overline "gray50"    
+                      ;; :underline "gray50"   
+                      :box nil              
+                      :background (face-background 'default))
   (set-face-attribute 'mode-line-inactive nil
-                    :overline "gray50"    
-                    ;; :underline "gray50"   
-                    :box nil              
-                    :background (face-background 'default)))
+                      :overline "gray50"    
+                      ;; :underline "gray50"   
+                      :box nil              
+                      :background (face-background 'default)))
 
 ;;; code completion
 (use-package corfu
@@ -113,7 +113,7 @@
     (if (or (null alpha)
 	    (and (consp alpha) (= (car alpha) 100))
 	    (and (numberp alpha) (= alpha 100)))
-	  (set-frame-parameter nil 'alpha my/default-opacity)
+	(set-frame-parameter nil 'alpha my/default-opacity)
       (set-frame-parameter nil 'alpha '(100 . 100)))))
 
 ;; toggle opacity
