@@ -85,7 +85,6 @@
 	'popon))
 
 ;;; quick select
-
 (use-package expand-region
   :ensure t
   :bind
@@ -97,6 +96,11 @@
   :bind (("C-:" . avy-goto-char)
          ("C-'" . avy-goto-line)
          ("C-c C-j" . avy-resume)))
+;;; fix some program not found
+(use-package exec-path-from-shell
+  :ensure t
+  :config
+  (exec-path-from-shell-initialize))
 
 ;; =====================================================================================
 ;; org config
