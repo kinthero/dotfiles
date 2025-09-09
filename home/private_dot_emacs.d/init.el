@@ -124,8 +124,12 @@
   
   (setq org-startup-with-inline-images t)
   (setq org-image-actual-width nil)
-  (setq org-confirm-babel-evaluate nil)
-)
+  (setq org-confirm-babel-evaluate nil))
+
+(use-package writeroom-mode
+  :ensure t
+  :config
+  (setq writeroom-width 120))
 
 ;; =====================================================================================
 ;; default opacity
