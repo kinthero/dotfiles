@@ -106,6 +106,27 @@
 ;; org config
 (setq org-agenda-files '("~/doc/org/notes/"))
 
+(use-package org
+  :ensure t
+  :config
+  ;; 启用 Org Babel 支持的语言
+  (org-babel-do-load-languages
+   'org-babel-load-languages
+   '((emacs-lisp . t)
+     (shell . t)
+     (python . t)
+     (ditaa . t)
+     (plantuml . t)))
+
+  (setq org-ditaa-jar-path (expand-file-name "/usr/bin/ditaa"))
+  (setq org-plantuml-jar-path (expand-file-name "/usr/bin/plantuml"))
+  (setq org-babel-python-command "python3")
+  
+  (setq org-startup-with-inline-images t)
+  (setq org-image-actual-width nil)
+  (setq org-confirm-babel-evaluate nil)
+)
+
 ;; =====================================================================================
 ;; default opacity
 (defvar my/default-opacity '(80 . 80))
