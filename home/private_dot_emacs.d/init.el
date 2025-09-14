@@ -82,8 +82,10 @@
   (add-hook 'text-mode-hook 'tempel-setup-capf)
 )
 
-(use-package tempel-collection)
-
+(use-package tempel-collection
+  :ensure t
+  :after tempel)
+  
 ;; (use-package consult)
 
 ;;; chinese input method
