@@ -1,3 +1,23 @@
 [user]
 	name = {{ .name }}
 	email = {{ .email }}
+
+[core]
+  editor = nvim
+
+[alias]
+  st = status --short
+  co = checkout
+  ci = commit
+  di = diff
+  aa = add --all
+  bv = branch -vv
+  ca = commit --amend
+  cb = checkout -b
+  ll = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --numstat
+  ls = ls-files
+
+[color]
+  diff = auto
+  status = auto
+  branch = auto
